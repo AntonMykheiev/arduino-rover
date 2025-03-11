@@ -30,8 +30,8 @@ void processGPSData() {
 
     doc["device"] = "rover";
     doc["time"] = gps.time.value();
-    doc["lat_error"] = String(lat, 8);
-    doc["lon_error"] = String(lon, 8);
+    doc["lat"] = String(lat, 8);
+    doc["lon"] = String(lon, 8);
 
     String jsonString;
     serializeJson(doc, jsonString);
@@ -48,14 +48,6 @@ void setup() {
   GPS.begin(115200);
   Serial.begin(115200);
   WiFi.begin(ssid, password);
-
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-    Serial.print(".");
-  }
-
-  Serial.println("Connected to WiFi");
-
   udp.begin(udpPort);
 }
 
